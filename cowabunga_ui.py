@@ -9,7 +9,7 @@ def run_ui():
         page.title = "Cowabunga Decryptor"
         page.theme_mode = ft.ThemeMode.DARK
         page.window.width = 620
-        page.window.height = 580
+        page.window.height = 650
         page.vertical_alignment = ft.MainAxisAlignment.START
         page.padding = 0
         page.bgcolor = "#0D1117"
@@ -103,6 +103,7 @@ def run_ui():
                     weight=ft.FontWeight.BOLD,
                     text_align=ft.TextAlign.CENTER,
                     color=ft.Colors.WHITE,
+                    width=560,
                 ),
                 ft.Text(
                     "Digital Eclipse Assets Decryption Tool",
@@ -110,6 +111,7 @@ def run_ui():
                     italic=True,
                     text_align=ft.TextAlign.CENTER,
                     color="#8899AA",
+                    width=560,
                 ),
             ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4),
             padding=ft.padding.only(top=24, bottom=16),
