@@ -1,4 +1,4 @@
-# 🐢 Cowabunga Decryptor (Python Edition)
+# 🐢 Pybunga Decryptor (Python Port)
 
 ![Pybunga UI](img/ProgramImage.png)
 
