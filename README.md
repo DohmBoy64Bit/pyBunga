@@ -97,15 +97,16 @@ Provide the input and output paths:
 python main.py assets.pie assets.zip -k cowabunga
 ```
 
-## 🛠️ CLI Options
+## 🛠️ CLI Usage
 
-| Argument | Description |
-| :--- | :--- |
-| `input` | Path to the `.pie` file to decrypt. |
-| `output` | Path where the decrypted data will be saved. |
-| `-k, --key` | Predefined game key (e.g., `atari`, `blizzard-arcade`). |
-| `-c, --custom`| Custom 32-bit hex key (e.g., `0xC90CA066`). |
-| `-console` | Runs the GUI but also allocates a console to show decryption progress (Useful for `.exe` shortcuts). |
+The Pybunga CLI (`Pybunga-CLI.exe` or `python main.py 1`) now features a fully interactive wizard!
+
+Simply launch the CLI and it will prompt you step-by-step for the required information:
+1. Select the game key from a numbered list (or choose `0` to enter a custom hex key).
+2. Provide the path to the input `.pie` file.
+3. Provide the path for the output file.
+
+Sit back and watch the decryption progress in the console!
 
 ## 📂 Project Structure
 
