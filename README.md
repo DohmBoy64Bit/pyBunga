@@ -1,6 +1,8 @@
 # 🐢 Pybunga Decryptor (Python Port)
 
-![Pybunga UI](img/ProgramImage.png)
+<p align="center">
+  <img src="img/ProgramImage.png" alt="Pybunga UI">
+</p>
 
 A modern, cross-platform port of the Cowabunga decryption tool for Digital Eclipse assets. This version features a modular Python architecture with both a command-line interface (CLI) and a Material Design graphical user interface (GUI).
 
