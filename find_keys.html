@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extracting the Key Manually - Pybunga</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-color: #05080E;
@@ -15,7 +18,7 @@
             --accent-glow: rgba(100, 181, 246, 0.2);
             --border: #2A3645;
             --code-bg: #090B10;
-            
+
             --hex-target: #FF7B72;
             --hex-key: #7EE787;
             --hex-end: #D2A8FF;
@@ -63,7 +66,7 @@
             max-width: 650px;
             margin: 0 auto;
         }
-        
+
         strong {
             color: #fff;
             font-weight: 600;
@@ -75,21 +78,29 @@
             border-radius: 16px;
             padding: 40px;
             margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
         }
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px var(--accent-glow);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
             border-color: #3A4A5A;
         }
 
         /* Staggered animation delays */
-        .card:nth-child(2) { animation-delay: 0.1s; }
-        .card:nth-child(3) { animation-delay: 0.25s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.25s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
 
         h2 {
             display: flex;
@@ -131,7 +142,7 @@
             padding-left: 45px;
             margin-bottom: 25px;
         }
-        
+
         li::before {
             content: counter(step-counter);
             counter-increment: step-counter;
@@ -164,10 +175,10 @@
             font-size: 0.95rem;
             color: #A5D6FF;
             display: inline-block;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
             margin: 0 4px;
         }
-        
+
         .code-container {
             margin: 15px 0;
         }
@@ -179,7 +190,7 @@
             border-radius: 0 12px 12px 0;
             font-style: italic;
             color: #C9D1D9;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -205,7 +216,7 @@
             border: 1px solid #2A3645;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 5px 15px rgba(0,0,0,0.4);
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.4);
         }
 
         .hex-viewer::before {
@@ -258,7 +269,7 @@
             background: rgba(126, 231, 135, 0.1);
             border-radius: 4px;
         }
-        
+
         .highlight-end {
             color: var(--hex-end);
             font-weight: 700;
@@ -266,24 +277,51 @@
 
         /* Animations Definition */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(126, 231, 135, 0.3); }
-            70% { box-shadow: 0 0 0 12px rgba(126, 231, 135, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(126, 231, 135, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(126, 231, 135, 0.3);
+            }
+
+            70% {
+                box-shadow: 0 0 0 12px rgba(126, 231, 135, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(126, 231, 135, 0);
+            }
         }
 
         /* Endianness blocks */
@@ -309,13 +347,13 @@
             color: #A5D6FF;
             display: flex;
             gap: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .byte {
             transition: color 0.3s;
         }
-        
+
         .byte:hover {
             color: var(--hex-key);
         }
@@ -332,15 +370,16 @@
             border-color: rgba(126, 231, 135, 0.3);
             text-shadow: 0 0 15px rgba(126, 231, 135, 0.3);
         }
-
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <header>
             <h1>Extracting the Key Manually</h1>
-            <p class="subtitle">If no decryption key exists for your game, you can extract it manually using a hex editor. Here is how to find and format the key hidden inside Digital Eclipse game executables.</p>
+            <p class="subtitle">If no decryption key exists for your game, you can extract it manually using a hex
+                editor. Here is how to find and format the key hidden inside Digital Eclipse game executables.</p>
         </header>
 
         <section class="card">
@@ -349,15 +388,20 @@
                 Locate the Key Sequence
             </h2>
             <ol>
-                <li>Open the game executable file (e.g., <span class="hex-block">MMPR_RR.exe</span>) in <strong>HxD</strong> or any hex editor.</li>
+                <li>Open the game executable file (e.g., <span class="hex-block">MMPR_RR.exe</span>) in
+                    <strong>HxD</strong> or any hex editor.</li>
                 <li>Search for the following hex pattern identifying the start of the key logic:
                     <div class="code-container"><span class="hex-block highlight-target">50 C7 87 E8</span></div>
                 </li>
-                <li>Locate the sequence in the file. After this sequence, you will find three null bytes (<span class="hex-block">00 00 00</span>), making the full prefix sequence:
-                    <div class="code-container"><span class="hex-block highlight-target">50 C7 87 E8 00 00 00</span></div>
+                <li>Locate the sequence in the file. After this sequence, you will find three null bytes (<span
+                        class="hex-block">00 00 00</span>), making the full prefix sequence:
+                    <div class="code-container"><span class="hex-block highlight-target">50 C7 87 E8 00 00 00</span>
+                    </div>
                 </li>
-                <li>The decryption key is located in the <strong>four bytes immediately following</strong> this sequence.</li>
-                <li>After the key, you will always find the sequence <span class="hex-block highlight-end">48 85 DB 74</span>. The key is sandwiched safely in between!</li>
+                <li>The decryption key is located in the <strong>four bytes immediately following</strong> this
+                    sequence.</li>
+                <li>After the key, you will always find the sequence <span class="hex-block highlight-end">48 85 DB
+                        74</span>. The key is sandwiched safely in between!</li>
             </ol>
 
             <div class="hex-viewer">
@@ -389,15 +433,18 @@
                 <span class="step-number">2</span>
                 Change the Endianness
             </h2>
-            <p>Because of how the architecture stores memory, the hexadecimal bytes are ordered backwards (Little Endian). To use this key in the Pybunga Decryptor, you must reverse the order of the bytes and prefix it with <span class="hex-block">0x</span>.</p>
-            
+            <p>Because of how the architecture stores memory, the hexadecimal bytes are ordered backwards (Little
+                Endian). To use this key in the Pybunga Decryptor, you must reverse the order of the bytes and prefix it
+                with <span class="hex-block">0x</span>.</p>
+
             <div class="endian-swap">
                 <div class="byte-box">
-                    <span class="byte">3B</span> <span class="byte">89</span> <span class="byte">5E</span> <span class="byte">FA</span>
+                    <span class="byte">3B</span> <span class="byte">89</span> <span class="byte">5E</span> <span
+                        class="byte">FA</span>
                 </div>
-                
+
                 <div class="arrow">➔</div>
-                
+
                 <div class="byte-box final-key">
                     0xFA5E893B
                 </div>
@@ -406,14 +453,22 @@
 
         <section class="card" style="padding: 0; background: transparent; border: none; box-shadow: none;">
             <div class="note-box">
-                <strong>💡 Note:</strong> This method was discovered while attempting to decrypt <em>Mighty Morphin Power Rangers: Rita's Rewind</em> when no pre-existing decryption tool was available. Use these instructions for any other Digital Eclipse pie engine game with a similar file structure.
+                <strong>💡 Note:</strong> This method was discovered while attempting to decrypt <em>Mighty Morphin
+                    Power Rangers: Rita's Rewind</em> when no pre-existing decryption tool was available. Use these
+                instructions for any other Digital Eclipse pie engine game with a similar file structure.
             </div>
         </section>
 
         <footer>
-            <p>Happy decrypting! 🐢 Designed for Pybunga Decryptor.</p>
+            <p>
+                Originally discovered by <a href="https://github.com/Masquerade64/"
+                    target="_blank">Masquerade64</a>.<br>
+                Based on the <a href="https://github.com/Masquerade64/Cowabunga/blob/main/find_keys.md"
+                    target="_blank">original tutorial</a>.
+            </p>
         </footer>
     </div>
 
 </body>
+
 </html>
