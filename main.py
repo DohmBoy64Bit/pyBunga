@@ -13,7 +13,12 @@ def main():
             print("Pybunga Console Output Enabled.")
         sys.argv.remove("-console")
 
-    if len(sys.argv) > 1:
+    import argparse
+    parser = argparse.ArgumentParser(description="Pybunga Decryptor")
+    parser.add_argument("--cli", action="store_true", help="Launch the interactive CLI wizard")
+    args, unknown = parser.parse_known_args()
+
+    if args.cli:
         run_cli()
     else:
         run_ui()

@@ -94,12 +94,12 @@ python main.py
 #### Use the CLI (Interactive Menu)
 To bypass the GUI and run the interactive console wizard:
 ```bash
-python main.py 1
+python main.py --cli
 ```
 
 ## 🛠️ CLI Usage
 
-The Pybunga CLI (`Pybunga-CLI.exe`) now features a fully interactive wizard!
+The Pybunga CLI (`Pybunga-CLI.exe` or `python main.py --cli`) now features a fully interactive wizard!
 
 Simply launch the CLI and it will prompt you step-by-step for the required information:
 1. Select the game key from a numbered list (or choose `0` to enter a custom hex key).
@@ -119,8 +119,10 @@ Sit back and watch the decryption progress in the console!
 
 - **Original Tool**: [Cowabunga](https://github.com/Masquerade64/Cowabunga/tree/main) by [Masquerade64](https://github.com/Masquerade64/).
 - **Ported by**: DohmBoy64bit
+- **Original Tool**: [Cowabunga](https://github.com/Masquerade64/Cowabunga/tree/main) by [Masquerade64](https://github.com/Masquerade64/).
+- **Ported by**: DohmBoy64bit
+
 
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
-
