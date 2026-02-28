@@ -96,6 +96,7 @@ python main.py assets.pie assets.zip -k cowabunga
 | `output` | Path where the decrypted data will be saved. |
 | `-k, --key` | Predefined game key (e.g., `atari`, `blizzard-arcade`). |
 | `-c, --custom`| Custom 32-bit hex key (e.g., `0xC90CA066`). |
+| `-console` | Runs the GUI but also allocates a console to show decryption progress (Useful for `.exe` shortcuts). |
 
 ## 📂 Project Structure
 
