@@ -1,5 +1,7 @@
 # 🐢 Cowabunga Decryptor (Python Edition)
 
+![Pybunga UI](img/ProgramImage.png)
+
 A modern, cross-platform port of the Cowabunga decryption tool for Digital Eclipse assets. This version features a modular Python architecture with both a command-line interface (CLI) and a Material Design graphical user interface (GUI).
 
 ## ✨ Features
