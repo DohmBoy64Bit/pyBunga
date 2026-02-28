@@ -11,6 +11,8 @@ def run_ui():
         page.window.width = 620
         page.window.height = 610
         page.window.resizable = False
+        page.window.title_bar_hidden = True
+        page.window.title_bar_buttons_hidden = True
         page.vertical_alignment = ft.MainAxisAlignment.START
         page.padding = 0
         page.bgcolor = "#0D1117"
@@ -22,6 +24,12 @@ def run_ui():
         progress_bar = ft.Ref[ft.ProgressBar]()
         status_text = ft.Ref[ft.Text]()
         decrypt_button = ft.Ref[ft.ElevatedButton]()
+
+        def close_app(e):
+            page.window.close()
+
+        def minimize_app(e):
+            page.window.minimized = True
 
         def pick_input_file(e):
             import tkinter as tk
@@ -96,6 +104,29 @@ def run_ui():
         card_bgcolor = "#1A2332"
         card_radius = 12
 
+        custom_topbar = ft.WindowDragArea(
+            content=ft.Container(
+                bgcolor="#111922",
+                padding=ft.padding.symmetric(horizontal=12, vertical=6),
+                border_radius=ft.border_radius.only(top_left=12, top_right=12),
+                content=ft.Row(
+                    controls=[
+                        ft.Icon(ft.Icons.SECURITY, color="#64B5F6", size=18),
+                        ft.Text("PyBunga Decryptor", weight=ft.FontWeight.BOLD, size=13, color="#8899AA"),
+                        ft.Container(expand=True),
+                        ft.IconButton(ft.Icons.MINIMIZE, icon_size=14, icon_color="#8899AA",
+                                      on_click=minimize_app,
+                                      style=ft.ButtonStyle(padding=4)),
+                        ft.IconButton(ft.Icons.CLOSE, icon_size=14, icon_color="#FF6B6B",
+                                      on_click=close_app,
+                                      style=ft.ButtonStyle(padding=4)),
+                    ],
+                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                    spacing=6,
+                )
+            )
+        )
+
         header = ft.Container(
             content=ft.Column([
                 ft.Text(
@@ -115,7 +146,7 @@ def run_ui():
                     width=560,
                 ),
             ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4),
-            padding=ft.padding.only(top=24, bottom=16),
+            padding=ft.padding.only(top=12, bottom=16),
         )
 
         file_config_card = ft.Container(
@@ -236,6 +267,7 @@ def run_ui():
         page.add(
             ft.Container(
                 content=ft.Column([
+                    custom_topbar,
                     header,
                     ft.Container(
                         content=ft.Column([
@@ -250,6 +282,7 @@ def run_ui():
                 ], spacing=0),
                 bgcolor="#0D1117",
                 expand=True,
+                border_radius=12,
             )
         )
 
