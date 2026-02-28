@@ -91,10 +91,10 @@ Simply run the entry point without arguments:
 python main.py
 ```
 
-#### Use the CLI
-Provide the input and output paths:
+#### Use the CLI (Interactive Menu)
+To bypass the GUI and run the interactive console wizard:
 ```bash
-python main.py assets.pie assets.zip -k cowabunga
+python main.py 1
 ```
 
 ## 🛠️ CLI Usage
