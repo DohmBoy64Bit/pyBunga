@@ -56,6 +56,14 @@ You can download the pre-compiled, single-file Windows executable directly from 
 
 No installation or Python environment required!
 
+### 🖥️ Enabling Console Output (For .exe)
+If you want to see real-time decryption progress logs while using the GUI:
+1. Right-click `Pybunga.exe` and select **Create shortcut**.
+2. Right-click the new shortcut and select **Properties**.
+3. In the **Target** field, add a space and then `-console` at the very end.
+   *(Example: `...\Pybunga.exe" -console`)*
+4. Use this shortcut to launch the app!
+
 ## 🚀 Quick Start (From Source)
 
 ### 1. Prerequisites
