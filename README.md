@@ -49,7 +49,14 @@ The following games are supported with pre-defined keys:
 - `golden-tee`
 - `rayman30th`
 
-## 🚀 Quick Start
+## 🚀 Download
+
+You can download the pre-compiled, single-file Windows executable directly from the GitHub releases page:
+[Download Pybunga Decryptor v1.0.0 (.exe)](https://github.com/DohmBoy64Bit/pyBunga/releases/latest)
+
+No installation or Python environment required!
+
+## 🚀 Quick Start (From Source)
 
 ### 1. Prerequisites
 - Python 3.9 or higher.
