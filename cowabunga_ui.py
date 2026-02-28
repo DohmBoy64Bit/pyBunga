@@ -10,6 +10,7 @@ def run_ui():
         page.theme_mode = ft.ThemeMode.DARK
         page.window.width = 620
         page.window.height = 610
+        page.window.resizable = False
         page.vertical_alignment = ft.MainAxisAlignment.START
         page.padding = 0
         page.bgcolor = "#0D1117"
@@ -98,7 +99,7 @@ def run_ui():
         header = ft.Container(
             content=ft.Column([
                 ft.Text(
-                    "Cowabunga Decryptor",
+                    "Pybunga Decryptor",
                     size=34,
                     weight=ft.FontWeight.BOLD,
                     text_align=ft.TextAlign.CENTER,
