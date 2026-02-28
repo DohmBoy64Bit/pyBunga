@@ -8,10 +8,11 @@ def run_ui():
     def main(page: ft.Page):
         page.title = "Cowabunga Decryptor"
         page.theme_mode = ft.ThemeMode.DARK
-        page.window.width = 600
-        page.window.height = 500
+        page.window.width = 620
+        page.window.height = 580
         page.vertical_alignment = ft.MainAxisAlignment.START
-        page.padding = 30
+        page.padding = 0
+        page.bgcolor = "#0D1117"
 
         input_file = ft.Ref[ft.TextField]()
         output_file = ft.Ref[ft.TextField]()
@@ -34,14 +35,14 @@ def run_ui():
             root.destroy()
             if file_path:
                 input_file.current.value = file_path
-                name, ext = os.path.splitext(file_path)
+                name, _ = os.path.splitext(file_path)
                 output_file.current.value = name + ".zip"
                 page.update()
 
         def start_decryption(e):
             if not input_file.current.value or not output_file.current.value:
                 status_text.current.value = "Please select both input and output files."
-                status_text.current.color = ft.Colors.RED_400
+                status_text.current.color = "#FF6B6B"
                 page.update()
                 return
 
@@ -51,7 +52,7 @@ def run_ui():
                     game_key = int(custom_key.current.value.replace("0x", ""), 16)
                 except ValueError:
                     status_text.current.value = "Invalid custom key format."
-                    status_text.current.color = ft.Colors.RED_400
+                    status_text.current.color = "#FF6B6B"
                     page.update()
                     return
             else:
@@ -60,7 +61,7 @@ def run_ui():
             decrypt_button.current.disabled = True
             progress_bar.current.value = 0
             status_text.current.value = "Processing..."
-            status_text.current.color = ft.Colors.BLUE_400
+            status_text.current.color = "#64B5F6"
             page.update()
 
             def work():
@@ -73,13 +74,13 @@ def run_ui():
                     )
                     if success:
                         status_text.current.value = "Success! File decrypted."
-                        status_text.current.color = ft.Colors.GREEN_400
+                        status_text.current.color = "#66BB6A"
                     else:
                         status_text.current.value = f"Error: {error}"
-                        status_text.current.color = ft.Colors.RED_400
+                        status_text.current.color = "#FF6B6B"
                 except Exception as ex:
                     status_text.current.value = f"Exception: {str(ex)}"
-                    status_text.current.color = ft.Colors.RED_400
+                    status_text.current.color = "#FF6B6B"
                 finally:
                     decrypt_button.current.disabled = False
                     page.update()
@@ -90,39 +91,163 @@ def run_ui():
 
             threading.Thread(target=work, daemon=True).start()
 
-        page.add(
-            ft.Text("Cowabunga Decryptor", size=32, weight=ft.FontWeight.BOLD),
-            ft.Text("Digital Eclipse Assets Decryption Tool", size=16, italic=True, color=ft.Colors.GREY_400),
-            ft.Divider(height=20),
-            ft.Row([
-                ft.TextField(ref=input_file, label="Input .pie File", expand=True, read_only=True),
-                ft.IconButton(icon=ft.Icons.FOLDER_OPEN, on_click=pick_input_file)
-            ]),
-            ft.TextField(ref=output_file, label="Output File"),
-            ft.Row([
-                ft.Dropdown(
-                    ref=key_dropdown,
-                    label="Game Key",
-                    value="cowabunga",
-                    options=[ft.dropdown.Option(k) for k in KEYS.keys()],
-                    expand=True
-                ),
-                ft.TextField(ref=custom_key, label="Custom Hex Key", width=150)
-            ]),
-            ft.Container(height=10),
-            ft.ElevatedButton(
-                ref=decrypt_button,
-                content=ft.Text("Decrypt Now"),
-                icon=ft.Icons.LOCK_OPEN,
-                on_click=start_decryption,
-                style=ft.ButtonStyle(
+        card_border = ft.border.all(1, "#3A4556")
+        card_bgcolor = "#1A2332"
+        card_radius = 12
+
+        header = ft.Container(
+            content=ft.Column([
+                ft.Text(
+                    "Cowabunga Decryptor",
+                    size=34,
+                    weight=ft.FontWeight.BOLD,
+                    text_align=ft.TextAlign.CENTER,
                     color=ft.Colors.WHITE,
-                    bgcolor=ft.Colors.BLUE_700,
-                    padding=20
-                )
-            ),
-            ft.ProgressBar(ref=progress_bar, value=0, height=10, border_radius=5),
-            ft.Text(ref=status_text, value="", size=14)
+                ),
+                ft.Text(
+                    "Digital Eclipse Assets Decryption Tool",
+                    size=15,
+                    italic=True,
+                    text_align=ft.TextAlign.CENTER,
+                    color="#8899AA",
+                ),
+            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4),
+            padding=ft.padding.only(top=24, bottom=16),
+        )
+
+        file_config_card = ft.Container(
+            content=ft.Column([
+                ft.Text("File Configuration", size=13, color="#8899AA", weight=ft.FontWeight.W_500),
+                ft.Container(height=4),
+                ft.Row([
+                    ft.TextField(
+                        ref=input_file,
+                        label="Input File (.pie)",
+                        hint_text="Select input file...",
+                        expand=True,
+                        read_only=True,
+                        border_color="#3A4556",
+                        focused_border_color="#64B5F6",
+                        label_style=ft.TextStyle(color="#8899AA"),
+                        text_style=ft.TextStyle(color=ft.Colors.WHITE),
+                        hint_style=ft.TextStyle(color="#556677"),
+                    ),
+                    ft.ElevatedButton(
+                        content=ft.Text("SELECT PIE", weight=ft.FontWeight.BOLD, size=13),
+                        icon=ft.Icons.FOLDER_OPEN,
+                        on_click=pick_input_file,
+                        style=ft.ButtonStyle(
+                            color="#1A2332",
+                            bgcolor="#C8D6E5",
+                            shape=ft.RoundedRectangleBorder(radius=8),
+                            padding=ft.padding.symmetric(horizontal=16, vertical=14),
+                        ),
+                    ),
+                ], spacing=10, vertical_alignment=ft.CrossAxisAlignment.CENTER),
+                ft.TextField(
+                    ref=output_file,
+                    label="Output File",
+                    border_color="#3A4556",
+                    focused_border_color="#64B5F6",
+                    label_style=ft.TextStyle(color="#8899AA"),
+                    text_style=ft.TextStyle(color=ft.Colors.WHITE),
+                ),
+            ], spacing=6),
+            padding=16,
+            border=card_border,
+            border_radius=card_radius,
+            bgcolor=card_bgcolor,
+        )
+
+        keys_card = ft.Container(
+            content=ft.Column([
+                ft.Text("Decryption Keys", size=13, color="#8899AA", weight=ft.FontWeight.W_500),
+                ft.Container(height=4),
+                ft.Row([
+                    ft.Dropdown(
+                        ref=key_dropdown,
+                        label="Select Game Key",
+                        value="cowabunga",
+                        options=[ft.dropdown.Option(k) for k in KEYS.keys()],
+                        expand=True,
+                        border_color="#3A4556",
+                        focused_border_color="#64B5F6",
+                        label_style=ft.TextStyle(color="#8899AA"),
+                        text_style=ft.TextStyle(color=ft.Colors.WHITE),
+                    ),
+                    ft.TextField(
+                        ref=custom_key,
+                        label="Custom Hex Key",
+                        hint_text="Enter hex key here...",
+                        expand=True,
+                        border_color="#3A4556",
+                        focused_border_color="#64B5F6",
+                        label_style=ft.TextStyle(color="#8899AA"),
+                        text_style=ft.TextStyle(color=ft.Colors.WHITE),
+                        hint_style=ft.TextStyle(color="#556677"),
+                    ),
+                ], spacing=12),
+            ], spacing=6),
+            padding=16,
+            border=card_border,
+            border_radius=card_radius,
+            bgcolor=card_bgcolor,
+        )
+
+        action_section = ft.Container(
+            content=ft.Column([
+                ft.Container(
+                    content=ft.ElevatedButton(
+                        ref=decrypt_button,
+                        content=ft.Text("Decrypt Now", size=16, weight=ft.FontWeight.BOLD),
+                        icon=ft.Icons.LOCK_OPEN,
+                        on_click=start_decryption,
+                        style=ft.ButtonStyle(
+                            color=ft.Colors.WHITE,
+                            bgcolor="#2196F3",
+                            shape=ft.RoundedRectangleBorder(radius=24),
+                            padding=ft.padding.symmetric(horizontal=40, vertical=16),
+                            shadow_color="#2196F3",
+                            elevation=6,
+                        ),
+                    ),
+                    alignment=ft.Alignment(0, 0),
+                ),
+                ft.Container(height=4),
+                ft.ProgressBar(ref=progress_bar, value=0, height=8, border_radius=4, color="#2196F3", bgcolor="#1A2332"),
+                ft.Container(height=2),
+                ft.Text(
+                    ref=status_text,
+                    value="Ready for Decryption",
+                    size=14,
+                    text_align=ft.TextAlign.CENTER,
+                    color="#8899AA",
+                    weight=ft.FontWeight.W_500,
+                ),
+            ], horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=4),
+            padding=ft.padding.symmetric(horizontal=20, vertical=16),
+            border_radius=ft.border_radius.only(bottom_left=12, bottom_right=12),
+            bgcolor="#111922",
+        )
+
+        page.add(
+            ft.Container(
+                content=ft.Column([
+                    header,
+                    ft.Container(
+                        content=ft.Column([
+                            file_config_card,
+                            ft.Container(height=8),
+                            keys_card,
+                        ]),
+                        padding=ft.padding.symmetric(horizontal=20),
+                    ),
+                    ft.Container(height=8),
+                    action_section,
+                ], spacing=0),
+                bgcolor="#0D1117",
+                expand=True,
+            )
         )
 
     ft.app(target=main)
