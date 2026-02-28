@@ -6,7 +6,7 @@ from cowabunga_core import KEYS, process_file
 
 def run_ui():
     def main(page: ft.Page):
-        page.title = "Cowabunga Decryptor"
+        page.title = "Pybunga Decryptor"
         page.theme_mode = ft.ThemeMode.DARK
         page.window.width = 620
         page.window.height = 610
