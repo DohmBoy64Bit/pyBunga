@@ -5,12 +5,13 @@ from cowabunga_core import KEYS, process_file
 
 
 def run_ui():
-    def main(page: ft.Page):
+    async def main(page: ft.Page):
         page.title = "Pybunga Decryptor"
         page.theme_mode = ft.ThemeMode.DARK
         page.window.width = 620
         page.window.height = 610
         page.window.resizable = False
+        page.window.icon = "img/icon.png"
         page.window.title_bar_hidden = True
         page.window.title_bar_buttons_hidden = True
         page.vertical_alignment = ft.MainAxisAlignment.START
@@ -25,11 +26,12 @@ def run_ui():
         status_text = ft.Ref[ft.Text]()
         decrypt_button = ft.Ref[ft.ElevatedButton]()
 
-        def close_app(e):
-            page.window.close()
+        async def close_app(e):
+            await page.window.close()
 
-        def minimize_app(e):
+        async def minimize_app(e):
             page.window.minimized = True
+            page.update()
 
         def pick_input_file(e):
             import tkinter as tk
@@ -111,15 +113,27 @@ def run_ui():
                 border_radius=ft.border_radius.only(top_left=12, top_right=12),
                 content=ft.Row(
                     controls=[
-                        ft.Icon(ft.Icons.SECURITY, color="#64B5F6", size=18),
+                        ft.Image(src="img/icon.png", width=18, height=18),
                         ft.Text("PyBunga Decryptor", weight=ft.FontWeight.BOLD, size=13, color="#8899AA"),
                         ft.Container(expand=True),
-                        ft.IconButton(ft.Icons.MINIMIZE, icon_size=14, icon_color="#8899AA",
-                                      on_click=minimize_app,
-                                      style=ft.ButtonStyle(padding=4)),
-                        ft.IconButton(ft.Icons.CLOSE, icon_size=14, icon_color="#FF6B6B",
-                                      on_click=close_app,
-                                      style=ft.ButtonStyle(padding=4)),
+                        ft.Container(
+                            content=ft.Icon(ft.Icons.HORIZONTAL_RULE, size=16, color="#8899AA"),
+                            width=32, height=32,
+                            border=ft.border.all(1, "#3A4556"),
+                            border_radius=6,
+                            bgcolor="#1A2332",
+                            alignment=ft.Alignment(0, 0),
+                            on_click=minimize_app,
+                        ),
+                        ft.Container(
+                            content=ft.Icon(ft.Icons.CLOSE, size=16, color="#FF6B6B"),
+                            width=32, height=32,
+                            border=ft.border.all(1, "#5A2A2A"),
+                            border_radius=6,
+                            bgcolor="#2A1518",
+                            alignment=ft.Alignment(0, 0),
+                            on_click=close_app,
+                        ),
                     ],
                     vertical_alignment=ft.CrossAxisAlignment.CENTER,
                     spacing=6,
