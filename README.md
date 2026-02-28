@@ -117,10 +117,10 @@ Sit back and watch the decryption progress in the console!
 
 ## 👏 Credits
 
-- Original reverse-engineering and C++/Rust implementations by **[Masquerade64](https://github.com/Masquerade64)**.
-- GUI design inspired by Flet / Flutter Material styling.
-- Python port, Flet GUI, interactive CLI, and executable packaging by **[DohmBoy64Bit](https://github.com/DohmBoy64Bit)**.
+- **Original Tool**: [Cowabunga](https://github.com/Masquerade64/Cowabunga/tree/main) by [Masquerade64](https://github.com/Masquerade64/).
+- **Ported by**: DohmBoy64bit
 
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
