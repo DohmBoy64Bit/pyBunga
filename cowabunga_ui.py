@@ -9,7 +9,7 @@ def run_ui():
         page.title = "Cowabunga Decryptor"
         page.theme_mode = ft.ThemeMode.DARK
         page.window.width = 620
-        page.window.height = 650
+        page.window.height = 610
         page.vertical_alignment = ft.MainAxisAlignment.START
         page.padding = 0
         page.bgcolor = "#0D1117"
