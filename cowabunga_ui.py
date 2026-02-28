@@ -1,10 +1,17 @@
 import flet as ft
 import os
 import threading
+import ctypes
 from cowabunga_core import KEYS, process_file
 
-
 def run_ui():
+    # Set AppUserModelID on Windows so the taskbar icon updates correctly
+    if os.name == 'nt':
+        try:
+            ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("pybunga.decryptor.ui.1.0")
+        except Exception:
+            pass
+
     async def main(page: ft.Page):
         page.title = "Pybunga Decryptor"
         page.theme_mode = ft.ThemeMode.DARK
@@ -300,7 +307,7 @@ def run_ui():
             )
         )
 
-    ft.app(target=main)
+    ft.app(target=main, assets_dir=".")
 
 if __name__ == "__main__":
     run_ui()
