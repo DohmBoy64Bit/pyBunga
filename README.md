@@ -99,7 +99,7 @@ python main.py 1
 
 ## 🛠️ CLI Usage
 
-The Pybunga CLI (`Pybunga-CLI.exe` or `python main.py 1`) now features a fully interactive wizard!
+The Pybunga CLI (`Pybunga-CLI.exe`) now features a fully interactive wizard!
 
 Simply launch the CLI and it will prompt you step-by-step for the required information:
 1. Select the game key from a numbered list (or choose `0` to enter a custom hex key).
