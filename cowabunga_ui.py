@@ -84,6 +84,8 @@ def run_ui():
 
             def work():
                 try:
+                    print(f"Starting decryption: {input_file.current.value}")
+                    print(f"Output destination: {output_file.current.value}")
                     success, error = process_file(
                         input_file.current.value,
                         output_file.current.value,
@@ -91,12 +93,15 @@ def run_ui():
                         progress_callback=lambda p: update_progress(p)
                     )
                     if success:
+                        print("\nDecryption completed successfully.")
                         status_text.current.value = "Success! File decrypted."
                         status_text.current.color = "#66BB6A"
                     else:
+                        print(f"\nError during decryption: {error}")
                         status_text.current.value = f"Error: {error}"
                         status_text.current.color = "#FF6B6B"
                 except Exception as ex:
+                    print(f"\nException: {str(ex)}")
                     status_text.current.value = f"Exception: {str(ex)}"
                     status_text.current.color = "#FF6B6B"
                 finally:
@@ -106,6 +111,10 @@ def run_ui():
             def update_progress(p):
                 progress_bar.current.value = p
                 page.update()
+                try:
+                    print(f"Progress: {p:.1%}", end='\r', flush=True)
+                except Exception:
+                    pass
 
             threading.Thread(target=work, daemon=True).start()
 

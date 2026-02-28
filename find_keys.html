@@ -55,7 +55,7 @@
             line-height: 1.1;
             letter-spacing: -1px;
             background: linear-gradient(135deg, #FFFFFF 0%, #64B5F6 100%);
-            -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 40px var(--accent-glow);
         }
@@ -389,7 +389,8 @@
             </h2>
             <ol>
                 <li>Open the game executable file (e.g., <span class="hex-block">MMPR_RR.exe</span>) in
-                    <strong>HxD</strong> or any hex editor.</li>
+                    <strong>HxD</strong> or any hex editor.
+                </li>
                 <li>Search for the following hex pattern identifying the start of the key logic:
                     <div class="code-container"><span class="hex-block highlight-target">50 C7 87 E8</span></div>
                 </li>
