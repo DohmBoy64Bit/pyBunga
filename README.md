@@ -119,8 +119,6 @@ Sit back and watch the decryption progress in the console!
 
 - **Original Tool**: [Cowabunga](https://github.com/Masquerade64/Cowabunga/tree/main) by [Masquerade64](https://github.com/Masquerade64/).
 - **Ported by**: DohmBoy64bit
-- **Original Tool**: [Cowabunga](https://github.com/Masquerade64/Cowabunga/tree/main) by [Masquerade64](https://github.com/Masquerade64/).
-- **Ported by**: DohmBoy64bit
 
 
 ## 📄 License
